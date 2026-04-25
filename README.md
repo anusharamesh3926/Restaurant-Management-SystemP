@@ -26,4 +26,4 @@ This project is an advanced Java-based Restaurant Management System developed as
 - UML Diagram (HTML)
 
 ## Author
-Your Name
+Anusha Ramesh
