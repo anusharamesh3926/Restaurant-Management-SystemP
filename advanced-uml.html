@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced UML - Restaurant System</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef2f7;
+            text-align: center;
+        }
+        h1 {
+            color: #222;
+        }
+        .mermaid {
+            background: white;
+            padding: 25px;
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Advanced UML Diagram - Restaurant Management System</h1>
+
+<div class="mermaid">
+classDiagram
+
+%% ================= MAIN CLASS =================
+class Restaurant {
+    -String name
+    -String address
+    -List~MenuItem~ menuItems
+    -List~Employee~ employees
+    -List~Reservation~ reservations
+
+    +addMenuItem(MenuItem)
+    +addEmployee(Employee)
+    +createReservation()
+    +advancedStreamOperations()
+    +collectorExamples()
+    +terminalOperations()
+    +findExpensiveItem()
+}
+
+%% ================= CUSTOMER =================
+class Customer {
+    -String name
+    -String email
+    -String phone
+    -List~Order~ orderHistory
+
+    +addOrder(Order)
+    +getOrderHistory()
+}
+
+%% ================= ORDER =================
+class Order {
+    -String orderId
+    -List~MenuItem~ items
+    -LocalDateTime orderTime
+
+    +addItems(MenuItem...)
+    +calculateTotal()
+}
+
+%% ================= EMPLOYEE =================
+class Employee {
+    <<abstract>>
+    -String name
+    -String employeeId
+    -double salary
+
+    +displayInfo()
+    +calculateMonthlyPay()
+}
+
+class Chef {
+    -String specialization
+}
+
+class Waiter {
+    -int tablesAssigned
+}
+
+class Manager {
+    -String department
+}
+
+Employee <|-- Chef
+Employee <|-- Waiter
+Employee <|-- Manager
+
+%% ================= MENU ITEM =================
+class MenuItem {
+    <<record>>
+    name : String
+    price : double
+    category : MenuCategory
+
+    +isExpensive()
+}
+
+%% ================= ENUM =================
+class MenuCategory {
+    <<enum>>
+    APPETIZER
+    MAIN_COURSE
+    DESSERT
+    BEVERAGE
+}
+
+%% ================= PAYMENT =================
+class Payment {
+    <<interface>>
+    +getPaymentType()
+}
+
+class CreditCardPayment {
+    cardNumber
+    expiryDate
+}
+
+class CashPayment {
+    amountTendered
+}
+
+class DigitalWalletPayment {
+    email
+    provider
+}
+
+Payment <|.. CreditCardPayment
+Payment <|.. CashPayment
+Payment <|.. DigitalWalletPayment
+
+%% ================= RESERVATION =================
+class Reservation {
+    -String reservationId
+    -Customer customer
+    -LocalDateTime dateTime
+    -int partySize
+
+    +cancel()
+    +complete()
+}
+
+%% ================= ADDRESS =================
+class Address {
+    -String street
+    -String city
+    -String state
+    -String zipCode
+
+    +getFullAddress()
+}
+
+%% ================= ADVANCED =================
+class AdvancedFeatures {
+    +runConcurrency()
+    +saveMenu()
+    +showLocalization()
+}
+
+class LoggerUtil {
+    <<utility>>
+    +logger
+}
+
+%% ================= RELATIONSHIPS =================
+Restaurant *-- MenuItem
+Restaurant *-- Employee
+Restaurant *-- Reservation
+
+Customer "1" -- "*" Order
+Order "*" -- "*" MenuItem
+
+Reservation --> Customer
+Restaurant --> AdvancedFeatures
+Order --> LoggerUtil
+
+</div>
+
+<script>
+mermaid.initialize({
+    startOnLoad: true,
+    theme: "default"
+});
+</script>
+
+</body>
+</html>

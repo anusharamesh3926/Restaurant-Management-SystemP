@@ -1,0 +1,3 @@
+MenuItem[name=Spring Rolls, price=8.99, category=APPETIZER]
+MenuItem[name=Grilled Salmon, price=24.99, category=MAIN_COURSE]
+MenuItem[name=Chocolate Cake, price=12.5, category=DESSERT]
